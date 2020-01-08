@@ -7,10 +7,10 @@
 class tomcat_instances::instances {
 
 file { '/tmp/bla':
-        ensure => file,
-        owner => 'root',
-        group => 'root',
-        content => "This is a test file created using puppet.Puppet is really cool",
+        ensure  => file,
+        owner   => 'root',
+        group   => 'root',
+        content => 'This is a test file created using puppet.Puppet is really cool,
     }
 
 }
