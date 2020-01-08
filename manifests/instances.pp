@@ -10,7 +10,7 @@ file { '/tmp/bla':
         ensure  => file,
         owner   => 'root',
         group   => 'root',
-        content => 'This is a test file created using puppet.Puppet is really cool,
+        content => 'This is a test file created using puppet.Puppet is really cool',
     }
 
 }
