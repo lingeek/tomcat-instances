@@ -1,5 +1,5 @@
 # @summary A short summary of the purpose of this class
-#
+#Test
 # A description of what this class does
 #
 # @example
