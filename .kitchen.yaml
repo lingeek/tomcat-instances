@@ -1,7 +1,30 @@
 ---
 driver:
   name: ec2
+  aws_ssh_key_id: key_SteppingStone
+  region: us-west-2
+  availability_zone: us-west-2a
+  require_chef_omnibus: true
+  security_group_ids: sg-6c997a1d
+  subnet_id: subnet-014ed878
+  associate_public_ip: false
+  interface: dns
+
+provisioner:
+  name: puppet_apply
+  manifests_path: manifests
+  modules_path: modules
+  hiera_data_path: hieradata
+
 platforms:
-     - name: centos-7
-     driver:
-       image_id: ami-0376dd8c30a3fe7a9
+  -name: amazon
+  driver:
+    driver_plugin: ec2
+    image_id: ami-0376dd8c30a3fe7a9
+  transport:
+    username: centos
+    ssh_key: ../ec2_keys/key_SteppingStone
+
+suites:
+  - name: default
+    manifest: site.pp
