@@ -1,0 +1,7 @@
+---
+driver:
+  name: ec2
+platforms:
+     - name: centos-7
+     driver:
+       image_id: ami-0376dd8c30a3fe7a9
