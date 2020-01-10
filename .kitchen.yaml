@@ -1,30 +1,25 @@
 ---
 driver:
   name: ec2
-  aws_ssh_key_id: key_SteppingStone
+  aws_ssh_key_id: <%= ENV['KITCHEN_SSH_KEY_NAME'] || "key_Sandbox" %>
   region: us-west-2
-  availability_zone: us-west-2a
-  require_chef_omnibus: true
-  security_group_ids: sg-6c997a1d
-  subnet_id: subnet-014ed878
-  associate_public_ip: false
-  interface: dns
+  security_group_ids: sg-0d17c079f6f016541
+  instance_type: t2.micro
+  associate_public_ip: true
+  shared_credentials_profile: sandbox
 
 provisioner:
   name: puppet_apply
-  manifests_path: manifests
-  modules_path: modules
-  hiera_data_path: hieradata
+  manifests_path: /var/lib/jenkins/workspace/Development/Deploy_tomcat_puppet_module/manifests
+  modules_path: /var/lib/jenkins/workspace/Development/Deploy_tomcat_puppet_module
 
 platforms:
-  -name: amazon
-  driver:
-    driver_plugin: ec2
-    image_id: ami-0376dd8c30a3fe7a9
-  transport:
-    username: centos
-    ssh_key: ../ec2_keys/key_SteppingStone
+  - name: centos-7
+    driver:
+      image_id: "ami-0376dd8c30a3fe7a9"
+
 
 suites:
   - name: default
-    manifest: site.pp
+    run_list:
+    attributes:
