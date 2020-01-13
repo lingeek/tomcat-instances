@@ -1,0 +1,40 @@
+---
+driver:
+  name: ec2
+  aws_ssh_key_id: key_Sandbox
+  region: us-west-2
+  security_group_ids: sg-01e985d74e18b517a
+  subnet_id: subnet-0512b66d475e92be9
+  instance_type: t2.micro
+  associate_public_ip: true
+  shared_credentials_profile: sandbox
+
+
+transport:
+  ssh_key: /var/lib/jenkins/.ssh/key_Sandbox.pem
+  username: centos
+  connection_retries: 5
+  connection_retry_sleep: 1
+  connection_timeout: 10
+  keepalive: true
+  keepalive_interval: 60
+
+provisioner:
+  name: puppet_apply
+  manifests_path: manifest
+  modules_path: modules
+  puppet_yum_collections_repo: https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
+
+verifier:
+    name: inspec
+
+platforms:
+  - name: centos-7
+    driver:
+      image_id: "ami-0c06347814b63621b"
+    transport:
+      name: sftp
+suites:
+  - name: default
+    run_list:
+    attributes:
