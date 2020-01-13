@@ -5,4 +5,5 @@
 # @example
 #   include tomcat_instances
 class tomcat_instances {
+include tomcat_instances::instances
 }
