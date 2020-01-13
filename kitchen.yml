@@ -21,12 +21,15 @@ transport:
 
 provisioner:
   name: puppet_apply
-  manifests_path: manifest
+  manifests_path: manifests
   modules_path: modules
   puppet_yum_collections_repo: https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
 
+
+busser:
+  ruby_bindir: /usr/bin
 verifier:
-    name: inspec
+  name: inspec
 
 platforms:
   - name: centos-7
@@ -38,3 +41,4 @@ suites:
   - name: default
     run_list:
     attributes:
+    manifest: init.pp
