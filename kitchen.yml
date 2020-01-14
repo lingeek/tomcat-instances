@@ -8,6 +8,7 @@ driver:
   instance_type: t2.micro
   associate_public_ip: true
   shared_credentials_profile: sandbox
+  use_sudo: true
 
 
 transport:
@@ -24,8 +25,7 @@ provisioner:
   manifests_path: manifests
   modules_path: modules
   puppet_yum_collections_repo: https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
-
-
+  puppet_apply_command: sudo /opt/puppetlabs/bin/puppet apply --modulepath=/tmp/kitchen/modules -e "class {\"tomcat_instances\":}"
 busser:
   ruby_bindir: /usr/bin
 verifier:

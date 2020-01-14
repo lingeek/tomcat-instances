@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 
 gem "test-kitchen"
+gem 'rspec-puppet'
+gem 'facter'
 gem 'librarian-puppet', '~> 3.0.0'
 gem 'rake', '~> 10.4.2'
 gem 'rspec', '~> 3.3.0'
